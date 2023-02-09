@@ -111,3 +111,51 @@ requete8 <- order(-df$attack,df$speed)
 df <- df[requete8,]
 requete10 <- df$nom[1:10]
 requete10
+
+# Exercice 4 : Tris et Filtres
+
+# a. Filtrez sur les pokemons qui ont 150 ou plus d’attack puis trier le résultat par ordre décroissant d’attack.
+
+requete11 <- order(df$attack,decreasing = T)
+df <- df[requete11,]
+requete12 <- df$nom[1:7]
+requete12
+
+
+# b. Filtrez sur les pokemons de type dragon,ghost,psychic et dark
+
+requete13 <- c("dark","ghost","dragon","psychic")
+subset(df,df$type %in% requete13,)
+
+
+# c. Filtrez sur les pokemons de type fire avec plus de 100 d’attack, puis trier le résultat par ordre décroissant d’attack.
+
+
+requete14 <- c("fire")
+requete15 <- subset(df,df$type %in% requete14)
+requete16 <- subset(requete15,requete15$attack > 100)
+requete17 <- order(requete16$attack, decreasing = T)
+requete18 <- requete16$nom[requete17]
+requete18
+
+# d. Filtrez sur les pokemons qui ont entre 100 et 150 de speed. Les trier par speed décroissant.
+
+requete19 <- subset(df,df$speed >= 100)
+requete20 <- subset(requete19,requete19$speed <= 150)
+requete21 <- order(requete19$speed, decreasing = T)
+requete22 <- requete20[requete21]
+requete22
+
+# e. Filtrez sur les pokémons qui ont des valeurs manquantes sur la variable height_m.
+
+subset(df,df$height_m %in% c(NA))
+
+# f. Filtrez sur les pokemons qui ont des valeurs renseignées à la fois pour la variable weight_kg et la variable height.
+
+
+requete23 <- subset(df,df$weight_kg >= 0)
+subset(requete23,requete23$height_m >= 0)
+
+# g. Filtrez sur les pokemons pesant plus de 250 kg et affichez le résultat pour vérifier.
+
+subset(df,df$weight_kg > 250)
